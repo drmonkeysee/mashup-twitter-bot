@@ -8,10 +8,10 @@
     },
     "license": "MIT",
     "main": "server.js",
-    "dependencies": {
-        "twit": "1.x.x"
-    },
     "engines": {
         "node": ">=0.10.33"
+    },
+    "dependencies": {
+        "twit": "1.x.x"
     }
 }
