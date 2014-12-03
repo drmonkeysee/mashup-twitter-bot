@@ -1,7 +1,7 @@
 {
     "name": "mashuptwitterbot",
     "description": "A twitter bot that mashes up two twitter accounts and tweets into one!",
-    "version": "0.1",
+    "version": "0.1.0",
     "author": {
         "name": "Brandon Stansbury",
         "url": "https://github.com/drmonkeysee"
