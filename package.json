@@ -7,11 +7,11 @@
         "url": "https://github.com/drmonkeysee"
     },
     "license": "MIT",
-    "main": "server.js",
     "repository": {
         "type": "git",
         "url": "https://github.com/drmonkeysee/mashup-twitter-bot"
     },
+    "main": "server.js",
     "engines": {
         "node": ">=0.10.33"
     },
