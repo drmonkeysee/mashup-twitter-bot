@@ -1,21 +1,26 @@
 {
-    "name": "mashup-twitter-bot",
-    "description": "A twitter bot that mashes up two twitter accounts and tweets into one!",
-    "version": "0.1.0",
-    "author": {
-        "name": "Brandon Stansbury",
-        "url": "https://github.com/drmonkeysee"
-    },
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/drmonkeysee/mashup-twitter-bot"
-    },
-    "main": "server.js",
-    "engines": {
-        "node": ">=0.10.33"
-    },
-    "dependencies": {
-        "twit": "1.x.x"
-    }
+  "name": "mashup-twitter-bot",
+  "description": "A twitter bot that mashes up two twitter accounts and tweets into one!",
+  "version": "0.1.0",
+  "author": "Brandon Stansbury (https://github.com/drmonkeysee)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drmonkeysee/mashup-twitter-bot"
+  },
+  "main": "server.js",
+  "engines": {
+    "node": ">=0.10.33"
+  },
+  "dependencies": {
+    "twit": "1.x.x"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "bugs": {
+    "url": "https://github.com/drmonkeysee/mashup-twitter-bot/issues"
+  },
+  "homepage": "https://github.com/drmonkeysee/mashup-twitter-bot",
+  "devDependencies": {}
 }
