@@ -13,7 +13,9 @@
     "node": ">=0.10.33"
   },
   "dependencies": {
-    "twit": "1.x.x"
+    "markov": "0.0.7",
+    "twit": "^1.1.18",
+    "twitter-text": "^1.10.0"
   },
   "scripts": {
     "start": "node server.js"
