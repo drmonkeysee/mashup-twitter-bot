@@ -1,52 +1,44 @@
-var Twit = require('twit'),
+var path = require('path'),
     markov = require('markov'),
-    twitterText = require('twitter-text'),
-    accountCredentials = require('./config/account.json'),
-    users = require('./config/users.json');
+    users = require('./lib/users'),
+    accountCredentials = require('./config/account.json');
 
-var tweets = [];
-var markovTweeter = markov();
-function generateMarkov(tweet) {
-    tweets.push(tweet);
-    if (tweets.length < users.length) {
-        return;
+var markovGenerator = markov(1);
+var markovInput = [];
+var markovCount = 0;
+
+function applyToGenerator(tweets, userCount) {
+    markovInput = markovInput.concat(tweets);
+    if (++markovCount == userCount) {
+        markovGenerator.seed(markovInput.join('\n'), function () {
+            var newTweet = markovGenerator.respond('ahoy telephone', 20).join(' ');
+            console.log('Prefix: %s', newTweet);
+        });
+    }
+}
+
+var userDataFile = path.join(__dirname, 'data/users.json');
+users.loadUsers(userDataFile, accountCredentials, function (err, users) {
+    if (err) {
+        console.log(err);
     }
 
-    var tweetsCount = tweets.length;
-    for (var i = 0; i < tweetsCount; ++i) {
-        var originalTweet = tweets[i];
-        var urls = twitterText.extractUrls(originalTweet);
-        var urlCount = urls.length;
-        for (var j = 0; j < urlCount; ++j) {
-            originalTweet = originalTweet.replace(urls[j], '');
-        }
-        tweets[i] = originalTweet.replace('foo', '').replace('name', '');
+    var userCount = users.length;
+    for (var i = 0; i < userCount; ++i) {
+        users[i].loadTweets(function (err, user) {
+            if (err) {
+                console.log(err);
+            }
+
+            user.saveTweets(function (err) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                console.log('Wrote tweets for %s', user.userName);
+            });
+
+            applyToGenerator(user.tweets, userCount);
+        });
     }
-
-    markovTweeter.seed(tweets.join('\n'), function () {
-        var newTweet = markovTweeter.respond('ahoy telephone').join(' ');
-        console.log('Prefix: %s', newTweet);
-    });
-
-    tweets = [];
-}
-
-var twitter = new Twit(accountCredentials);
-
-function createTimelineArgs(username) {
-    return {
-        screen_name: username,
-        count: 10,
-        exclude_replies: true,
-        include_rts: false,
-        trim_user: true
-    };
-}
-
-var userCount = users.length;
-for (var i = 0; i < userCount; ++i) {
-    twitter.get('statuses/user_timeline', createTimelineArgs(users[i]), function (err, data, response) {
-        var index = Math.floor(Math.random() * data.length);
-        generateMarkov(data[index].text);
-    });
-}
+});
