@@ -1,7 +1,6 @@
 var path = require('path'),
     markov = require('markov'),
-    users = require('./lib/users'),
-    accountCredentials = require('./config/account.json');
+    users = require('./lib/users');
 
 var markovGenerator = markov(1);
 var markovInput = [];
@@ -18,7 +17,7 @@ function applyToGenerator(tweets, userCount) {
 }
 
 var userDataFile = path.join(__dirname, 'data/users.json');
-users.loadUsers(userDataFile, accountCredentials, function (err, users) {
+users.load(userDataFile, function (err, users) {
     if (err) {
         console.log(err);
     }
