@@ -2,7 +2,7 @@ var path = require('path'),
     Twit = require('twit'),
     markov = require('markov'),
     users = require('./lib/users'),
-    store = require('./lib/twitter-store'),
+    twitterStore = require('./lib/twitter-store'),
     credentials = require('./config/credentials.json');
 
 var markovGenerator = markov(1);
@@ -18,6 +18,9 @@ function applyToGenerator(tweets, userCount) {
         });
     }
 }
+
+var storeFile = path.join(__dirname, 'data/store');
+var store = twitterStore(storeFile);
 
 var twitterApi = new Twit(credentials);
 var usersLoader = users(twitterApi);
@@ -47,7 +50,6 @@ usersLoader.load(userDataFile, function (err, users) {
                 }
                 user.loadTweets(processTweets);
             } else if (++finishedUsers == userCount) {
-                console.log('committing tweets');
                 store.commit(function (err) {
                     if (err) {
                         console.log(err);
