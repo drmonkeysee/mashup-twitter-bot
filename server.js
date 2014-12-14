@@ -5,17 +5,18 @@ var path = require('path'),
     tweetBot = require('./lib/tweetbot'),
     credentials = require('./config/credentials.json');
 
-var store = tweetStore.create(path.join(__dirname, 'data/foo'));
-var stream = store.getStoreStream();
-return;
-console.log('tweet count: %d', store.getTweets().length);
+var twitterService = new Twit(credentials);
+
+var store = tweetStore.create(path.join(__dirname, 'data/store'));
+store
+    .on('init', function (s) { /* fetch initial user history and store */ })
+    .on('update', function (s) { /* initialize tweeter */ })
+    .load(function (s) { /* set up user updates and tweet schedule */ });
+
 var bot = new tweetBot.Bot(store);
 
 bot.tweet();
 
-return;
-
-var twitterApi = new Twit(credentials);
 var usersLoader = users(twitterApi);
 
 var userDataFile = path.join(__dirname, 'data/users.json');
