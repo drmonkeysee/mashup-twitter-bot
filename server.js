@@ -1,11 +1,11 @@
 var path = require('path'),
     Twit = require('twit'),
     users = require('./lib/users'),
-    twitterStore = require('./lib/twitter-store'),
+    tweetStore = require('./lib/twitter-store'),
     tweetBot = require('./lib/tweetbot'),
     credentials = require('./config/credentials.json');
 
-var store = twitterStore.create(path.join(__dirname, 'data/foo'));
+var store = tweetStore.create(path.join(__dirname, 'data/foo'));
 var stream = store.getStoreStream();
 return;
 console.log('tweet count: %d', store.getTweets().length);
