@@ -5,22 +5,15 @@ var path = require('path'),
     tweetBot = require('./lib/tweetbot'),
     credentials = require('./config/credentials.json');
 
-var markovInput = [];
-var markovCount = 0;
-
-function applyToGenerator(tweets, userCount) {
-    markovInput = markovInput.concat(tweets);
-    if (++markovCount == userCount) {
-        markovGenerator.seed(markovInput.join('\n'), function () {
-            var newTweet = markovGenerator.respond('ahoy telephone', 20).join(' ');
-            console.log('Prefix: %s', newTweet);
-        });
-    }
-}
-
-var storeFile = path.join(__dirname, 'data/store');
-var store = twitterStore(storeFile);
+var store = twitterStore.create(path.join(__dirname, 'data/foo'));
+var stream = store.getStoreStream();
+return;
+console.log('tweet count: %d', store.getTweets().length);
 var bot = new tweetBot.Bot(store);
+
+bot.tweet();
+
+return;
 
 var twitterApi = new Twit(credentials);
 var usersLoader = users(twitterApi);
