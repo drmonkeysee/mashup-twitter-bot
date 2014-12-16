@@ -8,9 +8,11 @@ var path = require('path'),
 var twitterService = new Twit(credentials);
 
 var store = tweetStore.create(path.join(__dirname, 'data/store'));
+var bot = tweetBot.create(twitterService);
+bot.attach(store);
+
 var userService = users.create(path.join(__dirname, 'data/users.json'), store, twitterService);
-var bot = tweetBot.create(store, userService, twitterService);
-bot.start(function (err) {
+userService.initialize(function (err) {
     console.log('invoke scheduler');
     if (err) {
         console.log('Startup error: %j', err);
