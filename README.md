@@ -6,7 +6,7 @@ A [node.js](http://nodejs.org) bot that takes multiple twitter accounts and twee
 
 I burned out on this because I wasn't crazy about the quality of the markov generator output and didn't feel like writing my own to replace it. Also the person who wanted this bot doesn't need it anymore. This was mostly an excuse to explore [node.js](http://nodejs.org) and it was effective; I've decided I'm not a fan.
 
-However it does scan the list of twitter accounts given to it and generates an input file for the markov generator. It will then generate new tweets until you terminate the bot, though it will not post them. So feel free to to take this and do something cool with it! It's like 80% there and maybe I'll finish it some day.
+However it does scan the list of twitter accounts given to it and generates an input file for the markov generator. It will then generate new tweets until you terminate the bot, though it will not post them. So feel free to to take this and do something cool with it! It's like 80% there and maybe I'll finish it someday.
 
 ## Setup
 
