@@ -10,7 +10,7 @@ However it does scan the list of twitter accounts given to it and generates an i
 
 ## Setup
 
-In order to run the bot you need to add your account credentials and the list of twitter accounts to mashup. If you don't know what that means go read the [Twit](https://github.com/ttezel/twit) readme.
+In order to run the bot you need to add your account credentials (if you don't know what that means go read the [Twit](https://github.com/ttezel/twit) readme) and the list of twitter accounts to mashup.
 
 #### Credentials
 
@@ -18,7 +18,7 @@ Update the **config/credentials.json** file with the relevant details. The forma
 
 #### Users
 
-Add the twitter user accounts to mashup in **data/users.json**. The format is an array of accounts that is either the account name as a string or an object with a name property and a strip property describing a regular expression. The strip property is useful if you want to remove common text in that account's tweets that would add noise to the markov generator (e.g. the account always prefixes its tweets with a phrase). By default the mashup bot also strips urls out of tweets since those don't make for useful markov input.
+Add the twitter user accounts to mashup in **data/users.json**. The format is an array of accounts that is either the account name as a string or an object with a name property and a strip property describing a regular expression. The strip property is useful if you want to remove common text in that account's tweets that would add noise to the markov generator (e.g. the account always prefixes its tweets with a phrase). By default the mashup bot also strips urls out of tweets before adding them to the markov input file.
 
 Example:
 
