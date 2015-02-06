@@ -10,7 +10,7 @@ However it does scan the list of twitter accounts given to it and generates an i
 
 ## Setup
 
-In order to run the bot you need to add your account credentials (if you don't know what that means go read the [Twit](https://github.com/ttezel/twit) readme) and the list of twitter accounts to mashup.
+In order to run the bot you need to add your account credentials (if you don't know what that means go read the [twit](https://github.com/ttezel/twit) readme) and the list of twitter accounts to mashup.
 
 #### Credentials
 
